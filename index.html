@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & OTP Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #007BFF;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      margin-top: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="tel"], input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f8f9fa;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to cooktop</h1>
+  <p>Login </p>
+</header>
+
+<section id="login-section">
+  <h2>Login with Mobile</h2>
+  <form id="loginForm">
+    <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required />
+    <button type="submit">Send OTP</button>
+  </form>
+</section>
+
+<section id="otp-section" class="hidden">
+  <h2>Enter OTP</h2>
+  <form id="otpForm">
+    <input type="text" id="otp" placeholder="Enter OTP" required />
+    <button type="submit">Verify OTP</button>
+  </form>
+</section>
+
+<section id="success-section" class="hidden">
+  <h2>Login Successful!</h2>
+  <p>Thank you for verifying your number.</p>
+</section>
+
+<section id="contact-section">
+  <h2>Contact Us</h2>
+  <p>Email: vamsinagisetti22@gmail.com</p>
+  <p>Phone: +919390944905</p>
+</section>
+
+<footer>
+  &copy; 2025 MySite. All rights reserved.
+</footer>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const otpForm = document.getElementById('otpForm');
+  const loginSection = document.getElementById('login-section');
+  const otpSection = document.getElementById('otp-section');
+  const successSection = document.getElementById('success-section');
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const mobile = document.getElementById('mobile').value;
+    if (/^\d{10}$/.test(mobile)) {
+      alert('OTP sent to ' + mobile + ' (mock)');
+      loginSection.classList.add('hidden');
+      otpSection.classList.remove('hidden');
+    } else {
+      alert('Please enter a valid 10-digit mobile number.');
+    }
+  });
+
+  otpForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const otp = document.getElementById('otp').value;
+    if (otp === '123456') {
+      alert('OTP verified!');
+      otpSection.classList.add('hidden');
+      successSection.classList.remove('hidden');
+    } else {
+      alert('Invalid OTP. Try "123456" for demo.');
+    }
+  });
+</script>
+
+</body>
+</html>
